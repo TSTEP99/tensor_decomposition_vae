@@ -1,3 +1,4 @@
+"""File used to train VAE-CP"""
 from data import TensorDataset
 from losses import original_loss, total_variation_loss
 from math import floor
@@ -27,6 +28,10 @@ def train_loop(dataloader, model, loss_fn, optimizer):
         optimizer.step()
 
         train_loss += loss.item()
+        
+        # if batch % 100 == 0:
+        #     loss = loss.item()
+        #     print(f"loss: {loss:>7f}")
 
     train_loss /= num_batches
     print(f"train loss: {train_loss:}  \n")
