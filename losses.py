@@ -31,9 +31,11 @@ def compute_laplacian_loss(mu):
     pass
 
 def original_loss(elements, means, log_vars, mus, lambdas, mus_tildes, lambdas_tildes):
+    """The original loss function specified in the VAE_CP paper"""
     return -reconstruction_loss(elements, means, log_vars) + regularization_loss(mus, lambdas, mus_tildes, lambdas_tildes)
 
 def total_variation_loss(elements, means, log_vars, mus, lambdas, mus_tildes, lambdas_tildes, dims = [2]):
+    """The loss function with a total variation term added"""
     loss = original_loss(elements, means, log_vars, mus, lambdas, mus_tildes, lambdas_tildes)
 
     for i in range(len(mus)):
